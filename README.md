@@ -18,7 +18,7 @@ prd.md + repository context
 ## Repository layout
 
 ```text
-src/app/                    Next.js site and product surface
+apps/web/                   Next.js site and product surface
 cli/                        CLI boundary (coming next)
 packages/core/              Session and semantic model (coming next)
 skills/workahead/           Agent instructions
@@ -29,6 +29,7 @@ examples/                   Sanitized PRD inputs
 ## Run the site
 
 ```bash
+cd apps/web
 npm install
 npm run dev
 ```
@@ -57,5 +58,23 @@ required for the core loop.
 
 ## Status
 
-The site and product surface are being shaped first. The CLI, parser, renderer, and agent bridge
-will be extracted behind the boundaries already reserved in this repository.
+The site and product surface are being shaped first in `apps/web/`. The CLI, parser, renderer, and
+agent bridge will be built behind the boundaries reserved in `cli/` and `packages/core/`.
+
+## Application workspace
+
+The web app is intentionally isolated from the repository root:
+
+```text
+apps/web/
+├── src/app/                  Next.js routes and UI
+├── public/                   Static assets
+├── package.json              Web app dependencies and scripts
+├── next.config.ts            Next.js configuration
+├── postcss.config.mjs        Tailwind/PostCSS configuration
+├── tsconfig.json             Web app TypeScript configuration
+└── AGENTS.md                 Next.js-specific agent instructions
+```
+
+Run web commands from `apps/web/`. The repository root is reserved for product documentation,
+examples, skills, the CLI, and shared packages.
